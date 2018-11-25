@@ -40,7 +40,7 @@ lint:
 .PHONY: build
 build: lint
 	@echo "  building releases in ./bin/..."
-	GOBIN=$(BINDIR) $(GO) install $(GOFLAGS) -compiler=gccgo -tags '$(TAGS)' -ldflags '$(LDFLAGS)' github.com/jaredallard/k8s-mc-helper/cmd/...
+	GOBIN=$(BINDIR) $(GO) install $(GOFLAGS) -tags '$(TAGS)' -ldflags '$(LDFLAGS)' github.com/jaredallard/k8s-mc-helper/cmd/...
 
 # usage: make clean build-cross dist APP=mc-helper|mc-helper VERSION=v2.0.0-alpha.3
 .PHONY: build-cross
@@ -102,6 +102,11 @@ test-unit-coverage: get-cluster-credentials
 	@echo "==> Running unit tests with coverage profiling <=="
 	mc-helper_HOME=/no/such/dir $(GO) test $(GOFLAGS) -run $(TESTS) $(PKG) $(TESTFLAGS) -coverprofile coverage.out
 	go tool cover -func coverage.out
+
+
+.PHONY: protoc
+protoc:
+	$(MAKE) -C _proto/ all
 
 .PHONY: clean
 clean:

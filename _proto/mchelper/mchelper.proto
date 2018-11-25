@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package mchelper.mchelper;
+
+option go_package = "mchelper";
+
+service OperationsServices {
+  rpc ListMods(Empty) returns (stream ListModsResponse) {}
+  rpc SendCommand(SendCommandRequest) returns (stream SendCommandResponse) {}
+}
+
+message Mod {
+  string name = 1;
+  string version = 2;
+}
+
+message GenericOutput {
+  string output = 1;
+}
+
+message Empty {}
+message ListModsResponse {
+  repeated Mod mods = 2;
+}
+
+message SendCommandRequest {
+  string command = 1;
+}
+
+message SendCommandResponse {
+  repeated GenericOutput output = 1;
+}

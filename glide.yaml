@@ -1,0 +1,24 @@
+package: github.com/jaredallard/k8s-mc-helper
+import:
+- package: github.com/Masterminds/semver
+- package: github.com/golang/protobuf
+  subpackages:
+  - proto
+- package: github.com/mitchellh/go-ps
+- package: github.com/urfave/cli
+- package: golang.org/x/net
+  subpackages:
+  - context
+- package: google.golang.org/grpc
+  version: v1.16.0
+- package: k8s.io/client-go
+  version: 9.0.0
+  subpackages:
+  - kubernetes
+  - kubernetes/typed/core/v1
+  - plugin/pkg/client/auth
+  - rest
+  - tools/clientcmd
+- package: golang.org/x/sys/unix
+  version: master
+- package: github.com/docker/spdystream
